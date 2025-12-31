@@ -1,6 +1,7 @@
 /* =========================================
    1. SMOOTH ANIMATED COUNTER (Time Together)
    ========================================= */
+// START DATE: July 5, 2025
 const startDate = new Date("2025-07-05T00:00:00"); 
 
 // Helper: Calculate exact time difference
@@ -139,31 +140,16 @@ gsap.from(".gsap-hero", {
     ease: "power3.out"
 });
 
-// Image Parallax Effect
-const images = document.querySelectorAll('.parallax-img');
-images.forEach(img => {
-    gsap.to(img, {
-        yPercent: 20, 
-        ease: "none",
-        scrollTrigger: {
-            trigger: img.parentElement,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true
-        }
-    });
-});
-
-// Card Reveal on Scroll
-const cards = document.querySelectorAll('.card');
-cards.forEach(card => {
-    gsap.from(card, {
+// Animate the Content Boxes as they scroll over
+const boxes = document.querySelectorAll('.content-box');
+boxes.forEach(box => {
+    gsap.from(box, {
         y: 100,
         opacity: 0,
         duration: 1,
         scrollTrigger: {
-            trigger: card,
-            start: "top 90%",
+            trigger: box,
+            start: "top 85%",
             toggleActions: "play none none reverse"
         }
     });
