@@ -3,90 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Her ❤️</title>
+    <title>Our Story | July 2025 - Jan 2026</title>
+    
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Dancing+Script:wght@500;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
     <canvas id="heart-canvas"></canvas>
+
     <section class="hero">
-        <h2 class="fade-in">Hi, Beautiful.</h2>
-        <h1 class="slide-up">HAPPY NEW YEAR</h1>
+        <h2 class="gsap-hero">The Journey</h2>
+        <h1 class="gsap-hero">TIME TOGETHER</h1>
         
-        <div class="counter-container fade-in-delay">
-            <p class="together-label">We have been falling in love for</p>
-            
-            <div class="timer-grid">
-                <div class="time-card">
-                    <span id="days" class="number">0</span>
-                    <span class="label">DAYS</span>
-                </div>
-                
-                <div class="time-card">
-                    <span id="hours" class="number">0</span>
-                    <span class="label">HOURS</span>
-                </div>
-                
-                <div class="time-card">
-                    <span id="minutes" class="number">0</span>
-                    <span class="label">MINS</span>
-                </div>
+        <div class="timer-container gsap-hero">
+            <div class="time-box">
+                <span id="days">0</span>
+                <p>Days</p>
+            </div>
+            <div class="time-box">
+                <span id="hours">0</span>
+                <p>Hours</p>
+            </div>
+            <div class="time-box">
+                <span id="mins">0</span>
+                <p>Mins</p>
             </div>
         </div>
-
-        <div class="scroll-indicator">Scroll to see our journey ↓</div>
-    </section>
-
-    <section class="memory-section">
-        <div class="img-frame rotate-left">
-            <img src="assets/pic1.jpg" alt="First Meeting">
-        </div>
-        <div class="text-content">
-            <h3>CHAPTER 01</h3>
-            <h2>HOW IT STARTED</h2>
-            <p>
-                From the moment we met, I knew this was going to be special. 
-                Thank you for coming into my life and changing everything for the better.
-            </p>
+        
+        <p class="gsap-hero" style="font-style: italic; opacity: 0.8;">Falling in love since July 5, 2025</p>
+        
+        <div class="scroll-indicator">
+            Scroll to remember us ↓
         </div>
     </section>
 
-    <section class="memory-section reverse">
-        <div class="img-frame rotate-right">
-            <img src="assets/pic2.jpg" alt="Fun Memory">
-        </div>
-        <div class="text-content">
-            <h3>CHAPTER 02</h3>
-            <h2>THE HAPPINESS</h2>
-            <p>
-                Every smile, every laugh, and even the quiet moments—they all mean 
-                the world to me. You make the ordinary days feel extraordinary.
-            </p>
-        </div>
-    </section>
+    <div class="journey-section">
+        
+        <article class="card">
+            <div class="card-image-wrapper">
+                <img src="assets/pic1.jpg" alt="July 5th" class="parallax-img">
+            </div>
+            <div class="card-content">
+                <h3>July 5, 2025</h3>
+                <h2>HOW IT STARTED</h2>
+                <p>It feels like just yesterday we began this journey. That summer day changed everything for me. Thank you for walking into my life and making these months magical.</p>
+            </div>
+        </article>
 
-    <section class="memory-section">
-        <div class="img-frame rotate-left">
-            <img src="assets/pic3.jpg" alt="Us">
-        </div>
-        <div class="text-content">
-            <h3>CHAPTER 03</h3>
-            <h2>FOREVER TO GO</h2>
-            <p>
-                As we step into 2026, my only resolution is to love you more 
-                than I did last year,Till jan-12.
-            </p>
-        </div>
-    </section>
+        <article class="card">
+            <div class="card-image-wrapper">
+                <img src="assets/pic2.jpg" alt="Memories" class="parallax-img">
+            </div>
+            <div class="card-content">
+                <h3>The Memories</h3>
+                <h2>THE HAPPINESS</h2>
+                <p>We created moments that I will carry forever. Through the laughter, the love, and even the quiet times—you showed me what true happiness looks like.</p>
+            </div>
+        </article>
 
-    <footer class="final-message">
-        <h1>I LOVE YOU</h1>
-        <button class="love-btn" onclick="rainHearts()">MAKE IT RAIN LOVE ❤️</button>
+        <article class="card">
+            <div class="card-image-wrapper">
+                <img src="assets/pic3.jpg" alt="Goodbye" class="parallax-img">
+            </div>
+            <div class="card-content">
+                <h3>Jan 12, 2026</h3>
+                <h2>THE FINAL CHAPTER</h2>
+                <p>As we approach Jan 12th, I don't want to be sad that it's ending, but happy that it happened. Thank you for being my person for this chapter of my life.</p>
+            </div>
+        </article>
+
+    </div>
+
+    <footer class="footer">
+        <h1 class="gsap-footer">ALWAYS SPECIAL</h1>
+        <p class="gsap-footer" style="margin-top: 1rem; font-size: 1.2rem;">Let's make these last days count.</p>
+        <button class="btn-love gsap-footer" id="burst-btn">ONE LAST RAIN OF LOVE ❤️</button>
     </footer>
 
     <script src="script.js"></script>
 </body>
-
 </html>
