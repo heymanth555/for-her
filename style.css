@@ -91,7 +91,7 @@ h1, h2, h3 {
     font-weight: 700;
     color: var(--primary);
     
-    /* IMPORTANT: Keeps width constant while numbers animate */
+    /* IMPORTANT: Keeps width constant while numbers animate so text doesn't shake */
     font-variant-numeric: tabular-nums; 
 }
 
@@ -130,40 +130,31 @@ h1, h2, h3 {
     position: relative;
 }
 
-/* Update this section in style.css */
-
+/* IMAGE FIXES FOR PORTRAIT SELFIES */
 .card-image-wrapper {
     width: 100%;
-    /* DELETE the fixed 'height: 300px' */
-    /* Use aspect-ratio to make the box portrait-shaped (taller) */
-    aspect-ratio: 3 / 4; 
+    /* aspect-ratio 2/3 forces a vertical "Phone Screen" shape */
+    aspect-ratio: 2 / 3; 
     overflow: hidden;
     border-radius: 16px;
     margin-bottom: 1.5rem;
     position: relative;
-    background: #000; /* Dark background behind image */
+    background: #1a1a1a; /* Dark background placeholder */
 }
 
 .card img {
     width: 100%;
-    /* We need slightly >100% for the parallax movement */
-    height: 115%; 
+    /* Slightly taller (110%) allows the GSAP parallax to move it without showing gaps */
+    height: 110%; 
     
-    /* 'cover' fills the box without stretching */
+    /* 'Cover' fills the box so no black bars */
     object-fit: cover; 
     
-    /* IMPORTANT: aligns image to the TOP so faces aren't cut off */
-    object-position: top center; 
+    /* 'Center' focuses on the middle of the photo (face) instead of ceiling/forehead */
+    object-position: center; 
     
     will-change: transform;
     display: block;
-}
-
-/* On very small mobile screens, make it even taller if needed */
-@media (max-width: 480px) {
-    .card-image-wrapper {
-        aspect-ratio: 2 / 3; /* Even taller for mobile selfies */
-    }
 }
 
 .card-content h3 {
@@ -225,8 +216,7 @@ h1, h2, h3 {
 @media (max-width: 768px) {
     .hero h1 { font-size: 2.5rem; }
     .card { padding: 1.5rem; }
-    .card-image-wrapper { height: 250px; }
+    /* Ensure image looks good on very small screens */
+    .card-image-wrapper { aspect-ratio: 2 / 3; } 
     .journey-section { padding: 1rem; }
 }
-
-
