@@ -1,10 +1,10 @@
 :root {
-    /* Theme: Bittersweet Twilight */
-    --primary: #c77dff; 
-    --glass-bg: rgba(16, 0, 43, 0.65); /* Darker glass for better contrast */
-    --glass-border: rgba(255, 255, 255, 0.2);
-    --text-light: #ffffff;
-    --text-dim: #e0c3fc;
+    --primary: #c77dff; /* Purple Glow */
+    --dark-bg: #0a0510;
+    --text-white: #ffffff;
+    --text-gray: #a0a0a0;
+    --font-head: 'Oswald', sans-serif;
+    --font-body: 'Poppins', sans-serif;
 }
 
 * {
@@ -14,14 +14,13 @@
 }
 
 body {
-    background: #0f0518;
-    color: var(--text-light);
-    font-family: 'Poppins', sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--text-white);
+    font-family: var(--font-body);
     overflow-x: hidden;
-    min-height: 100vh;
 }
 
-/* LIVE HEARTS BACKGROUND */
+/* BACKGROUND CANVAS */
 #heart-canvas {
     position: fixed;
     top: 0;
@@ -32,185 +31,192 @@ body {
     pointer-events: none;
 }
 
-/* TYPOGRAPHY */
-h1, h2, h3 {
-    font-family: 'Playfair Display', serif;
-}
-
 /* HERO SECTION */
 .hero {
-    height: 100vh;
+    height: 100vh; /* Full Screen */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 2rem;
     position: relative;
     z-index: 2;
-    background: linear-gradient(180deg, rgba(16,0,43,0.9), transparent);
+    background: linear-gradient(180deg, rgba(10,5,16,0.9), rgba(10,5,16,0.6));
 }
 
-.hero h1 {
-    font-size: 3.2rem;
-    background: linear-gradient(to right, #e0aaff, #c77dff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 0.5rem;
-    line-height: 1.1;
-}
-
-.hero h2 {
-    font-size: 1.4rem;
-    font-weight: 400;
-    letter-spacing: 3px;
-    margin-bottom: 2rem;
-    color: var(--text-dim);
+.subtitle {
+    font-family: var(--font-head);
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+    color: var(--primary);
+    margin-bottom: 1rem;
     text-transform: uppercase;
 }
 
-/* TIMER CONTAINER */
-.timer-container {
+.title {
+    font-family: var(--font-head);
+    font-size: 4rem;
+    line-height: 1;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    background: linear-gradient(to right, #fff, #c77dff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* TIMER STYLE */
+.timer-wrapper {
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 1.5rem;
-    margin: 2rem 0;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 1rem 2rem;
-    border-radius: 50px;
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(10px);
+    margin-bottom: 2rem;
 }
 
-.time-box {
-    text-align: center;
-    min-width: 60px;
+.time-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 60px; /* Prevents jumping width */
 }
 
-.time-box span {
-    display: block;
-    font-size: 2rem;
+.time-unit span {
+    font-family: var(--font-head);
+    font-size: 2.5rem;
     font-weight: 700;
-    color: var(--primary);
-    /* Keeps numbers from shaking */
+    line-height: 1;
+    color: var(--text-white);
+    /* CRITICAL: Prevents shaking during animation */
     font-variant-numeric: tabular-nums; 
 }
 
-.time-box p {
+.time-unit label {
     font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--text-dim);
+    color: var(--primary);
+    letter-spacing: 2px;
+    margin-top: 5px;
+    font-weight: 500;
 }
 
-.scroll-indicator {
-    position: absolute;
-    bottom: 2rem;
+.divider {
+    font-size: 2rem;
+    color: var(--text-gray);
+    margin-top: -20px;
+    font-weight: 300;
+}
+
+.date-tag {
     font-size: 0.9rem;
-    opacity: 0.6;
+    color: var(--text-gray);
+    letter-spacing: 1px;
+}
+
+.scroll-down {
+    position: absolute;
+    bottom: 40px;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    opacity: 0.7;
     animation: bounce 2s infinite;
 }
 
-/* --- STICKY FULL SCREEN LAYOUT --- */
-.journey-section {
+/* MEMORY SECTIONS (The "Card" Look) */
+.memory-section {
     position: relative;
-    z-index: 1;
+    z-index: 2;
+    min-height: 100vh; /* Each section is full screen */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    gap: 4rem;
 }
 
-.chapter {
-    position: relative;
-    /* This makes the scroll feel longer/smoother */
-    min-height: 140vh; 
+/* On Desktop: Alternate sides */
+.memory-section.reverse {
+    flex-direction: row-reverse;
 }
 
-/* STICKY IMAGE WRAPPER */
-.chapter-img-wrapper {
-    position: sticky;
-    top: 0;
-    width: 100%;
-    height: 100vh; /* Full screen height */
+.image-container {
+    width: 400px;
+    height: 550px;
     overflow: hidden;
-    z-index: 1;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    background: #000;
 }
 
-.chapter-img-wrapper img {
+.image-container img {
     width: 100%;
     height: 100%;
-    /* Covers the whole screen, no black bars */
-    object-fit: cover; 
-    /* Focuses on the center (face) */
+    object-fit: cover;
+    /* Default position (overridden inline for pic1) */
     object-position: center; 
+    transition: transform 0.5s ease;
+}
+
+.text-content {
+    max-width: 400px;
+}
+
+.tag {
+    color: var(--primary);
+    font-family: var(--font-head);
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
     display: block;
 }
 
-/* FLOATING CONTENT BOX */
-.content-box {
-    position: relative;
-    z-index: 2; /* Sits on top of image */
-    
-    margin: 0 1.5rem;
-    /* Negative margin pulls it UP over the image */
-    margin-top: -30vh; 
-    margin-bottom: 30vh;
-    
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    padding: 2.5rem;
-    border-radius: 24px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-}
-
-.content-box h3 {
-    font-size: 0.9rem;
-    color: var(--primary);
-    letter-spacing: 2px;
+.text-content h2 {
+    font-family: var(--font-head);
+    font-size: 3rem;
     text-transform: uppercase;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
 }
 
-.content-box h2 {
-    font-size: 2.2rem;
-    margin-bottom: 1rem;
-    line-height: 1.2;
-}
-
-.content-box p {
+.text-content p {
+    color: var(--text-gray);
+    line-height: 1.7;
     font-size: 1.1rem;
-    line-height: 1.6;
-    color: #e0e0e0;
 }
 
 /* FOOTER */
 .footer {
-    position: relative;
-    z-index: 2;
-    min-height: 50vh;
-    background: #0f0518;
+    height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    padding: 2rem;
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(0deg, rgba(10,5,16,1), rgba(10,5,16,0.8));
 }
 
-.btn-love {
-    margin-top: 2rem;
-    padding: 1rem 2.5rem;
-    font-size: 1.1rem;
-    background: var(--primary);
-    color: #10002b;
-    font-weight: 600;
-    border: none;
-    border-radius: 50px;
+.footer h1 {
+    font-family: var(--font-head);
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+.glow-btn {
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    font-family: var(--font-head);
+    letter-spacing: 2px;
     cursor: pointer;
-    box-shadow: 0 0 25px rgba(199, 125, 255, 0.4);
-    transition: transform 0.2s;
+    transition: all 0.3s ease;
 }
 
-.btn-love:active {
-    transform: scale(0.95);
+.glow-btn:hover {
+    background: var(--primary);
+    color: #fff;
+    box-shadow: 0 0 30px var(--primary);
 }
 
 @keyframes bounce {
@@ -219,12 +225,32 @@ h1, h2, h3 {
     60% {transform: translateY(-5px);}
 }
 
-/* Mobile Adjustments */
+/* MOBILE RESPONSIVE FIXES */
 @media (max-width: 768px) {
     .hero h1 { font-size: 2.5rem; }
-    .content-box { 
-        padding: 2rem 1.5rem;
-        /* Pull content higher up on small screens */
-        margin-top: -40vh; 
+    
+    .memory-section {
+        flex-direction: column !important; /* Stack vertically */
+        justify-content: flex-start; /* Start from top */
+        padding: 1rem;
+        padding-top: 4rem; /* Add space at top */
+        gap: 2rem;
+        height: auto;
+        min-height: 100vh;
     }
+
+    .image-container {
+        width: 100%;
+        height: 500px; 
+        max-height: 60vh; /* Don't be taller than 60% of screen */
+    }
+
+    .text-content {
+        width: 100%;
+        text-align: left;
+        padding: 0 1rem;
+        padding-bottom: 4rem;
+    }
+
+    .text-content h2 { font-size: 2rem; }
 }
