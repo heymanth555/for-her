@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Her ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Dancing+Script:wght@500;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <canvas id="heart-canvas"></canvas>
+    <section class="hero">
+        <h2 class="fade-in">Hi, Beautiful.</h2>
+        <h1 class="slide-up">HAPPY NEW YEAR</h1>
+        
+        <div class="counter-container fade-in-delay">
+            <p class="together-label">We have been falling in love for</p>
+            
+            <div class="timer-grid">
+                <div class="time-card">
+                    <span id="days" class="number">0</span>
+                    <span class="label">DAYS</span>
+                </div>
+                
+                <div class="time-card">
+                    <span id="hours" class="number">0</span>
+                    <span class="label">HOURS</span>
+                </div>
+                
+                <div class="time-card">
+                    <span id="minutes" class="number">0</span>
+                    <span class="label">MINS</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">Scroll to see our journey ↓</div>
+    </section>
+
+    <section class="memory-section">
+        <div class="img-frame rotate-left">
+            <img src="assets/pic1.jpg" alt="First Meeting">
+        </div>
+        <div class="text-content">
+            <h3>CHAPTER 01</h3>
+            <h2>HOW IT STARTED</h2>
+            <p>
+                From the moment we met, I knew this was going to be special. 
+                Thank you for coming into my life and changing everything for the better.
+            </p>
+        </div>
+    </section>
+
+    <section class="memory-section reverse">
+        <div class="img-frame rotate-right">
+            <img src="assets/pic2.jpg" alt="Fun Memory">
+        </div>
+        <div class="text-content">
+            <h3>CHAPTER 02</h3>
+            <h2>THE HAPPINESS</h2>
+            <p>
+                Every smile, every laugh, and even the quiet moments—they all mean 
+                the world to me. You make the ordinary days feel extraordinary.
+            </p>
+        </div>
+    </section>
+
+    <section class="memory-section">
+        <div class="img-frame rotate-left">
+            <img src="assets/pic3.jpg" alt="Us">
+        </div>
+        <div class="text-content">
+            <h3>CHAPTER 03</h3>
+            <h2>FOREVER TO GO</h2>
+            <p>
+                As we step into 2026, my only resolution is to love you more 
+                than I did last year. Here's to us.
+            </p>
+        </div>
+    </section>
+
+    <footer class="final-message">
+        <h1>I LOVE YOU</h1>
+        <p>Ready for another year together?</p>
+        <button class="love-btn" onclick="rainHearts()">MAKE IT RAIN LOVE ❤️</button>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
