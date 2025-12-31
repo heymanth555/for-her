@@ -1,10 +1,9 @@
-/* =========================================
-   1. SMOOTH ANIMATED COUNTER (Time Together)
-   ========================================= */
-// START DATE: July 5, 2025
+/* ========================
+   1. SMOOTH COUNTER LOGIC
+   ======================== */
 const startDate = new Date("2025-07-05T00:00:00"); 
 
-// Helper: Calculate exact time difference
+// Helper: Calculate time difference
 function getTimeDiff() {
     const now = new Date();
     const diff = now - startDate;
@@ -15,29 +14,29 @@ function getTimeDiff() {
     };
 }
 
-// A. Initial Animation (0 -> Current Value)
+// A. Initial Animation (0 -> Current Time)
 const finalValues = getTimeDiff();
-const counter = { d: 0, h: 0, m: 0 }; // Proxy object to animate
+const counter = { d: 0, h: 0, m: 0 }; // Start at 0
 
 gsap.to(counter, {
-    duration: 3,         // Animation lasts 3 seconds
+    duration: 3.5,       // Animation takes 3.5 seconds
     d: finalValues.days,
     h: finalValues.hours,
     m: finalValues.mins,
-    ease: "power2.out",  // Smooth deceleration
+    ease: "power2.out",  // Slows down at the end
     onUpdate: () => {
-        // Update DOM with integer values
+        // Update HTML while animating
         document.getElementById('days').innerText = Math.floor(counter.d);
         document.getElementById('hours').innerText = Math.floor(counter.h);
         document.getElementById('mins').innerText = Math.floor(counter.m);
     },
     onComplete: () => {
-        // B. Switch to Real-Time Clock after animation
+        // B. Switch to Live Clock after animation
         setInterval(updateRealTime, 1000);
     }
 });
 
-// Real-time updater (runs every second after animation finishes)
+// Real-time updater (runs every second after animation)
 function updateRealTime() {
     const current = getTimeDiff();
     document.getElementById('days').innerText = current.days;
@@ -45,10 +44,32 @@ function updateRealTime() {
     document.getElementById('mins').innerText = current.mins;
 }
 
+/* ========================
+   2. SCROLL ANIMATIONS
+   ======================== */
+gsap.registerPlugin(ScrollTrigger);
 
-/* =========================================
-   2. LIVE HEARTS BACKGROUND
-   ========================================= */
+// Hero Fade In
+gsap.from(".hero-content > *", {
+    y: 50, opacity: 0, duration: 1.5, stagger: 0.2, ease: "power3.out"
+});
+
+// Section Animations
+const sections = document.querySelectorAll('.memory-section');
+sections.forEach(section => {
+    gsap.from(section.querySelector('.image-container'), {
+        y: 100, opacity: 0, duration: 1,
+        scrollTrigger: { trigger: section, start: "top 75%" }
+    });
+    gsap.from(section.querySelector('.text-content'), {
+        y: 50, opacity: 0, duration: 1, delay: 0.2,
+        scrollTrigger: { trigger: section, start: "top 75%" }
+    });
+});
+
+/* ========================
+   3. HEART ANIMATION
+   ======================== */
 const canvas = document.getElementById('heart-canvas');
 const ctx = canvas.getContext('2d');
 let width, height;
@@ -69,7 +90,6 @@ class Heart {
         this.speedY = Math.random() * 1 + 0.3;
         this.opacity = Math.random() * 0.4 + 0.1;
         this.type = type; 
-        
         if(type === 'burst') {
             this.speedY = Math.random() * 5 + 2;
             this.speedX = (Math.random() - 0.5) * 5;
@@ -85,84 +105,22 @@ class Heart {
         }
         if (this.y < -50 || this.opacity <= 0) this.reset();
     }
-    reset() {
-        if(this.type === 'burst') {
-            hearts = hearts.filter(h => h !== this);
-            return;
-        }
-        this.y = height + 20;
-        this.x = Math.random() * width;
-        this.opacity = Math.random() * 0.4 + 0.1;
-    }
     draw() {
         ctx.globalAlpha = this.opacity;
-        ctx.fillStyle = '#c77dff'; // Purple hearts
+        ctx.fillStyle = '#c77dff';
         ctx.font = `${this.size}px serif`;
         ctx.fillText('❤', this.x, this.y);
         ctx.globalAlpha = 1;
     }
 }
-
-function initHearts() {
-    for(let i=0; i<35; i++) hearts.push(new Heart());
-}
-
+function initHearts() { for(let i=0; i<30; i++) hearts.push(new Heart()); }
 function animateHearts() {
     ctx.clearRect(0, 0, width, height);
-    hearts.forEach(h => {
-        h.update();
-        h.draw();
-    });
+    hearts.forEach(h => { h.update(); h.draw(); });
     requestAnimationFrame(animateHearts);
 }
-
 document.getElementById('burst-btn').addEventListener('click', () => {
-    for(let i=0; i<60; i++) {
-        hearts.push(new Heart(width/2, height/2, 'burst'));
-    }
+    for(let i=0; i<50; i++) hearts.push(new Heart(width/2, height/2, 'burst'));
 });
-
 initHearts();
 animateHearts();
-
-
-/* =========================================
-   3. GSAP SCROLL ANIMATIONS
-   ========================================= */
-gsap.registerPlugin(ScrollTrigger);
-
-// Hero Fade In
-gsap.from(".gsap-hero", {
-    y: 50,
-    opacity: 0,
-    duration: 1.5,
-    stagger: 0.2,
-    ease: "power3.out"
-});
-
-// Animate the Content Boxes as they scroll over
-const boxes = document.querySelectorAll('.content-box');
-boxes.forEach(box => {
-    gsap.from(box, {
-        y: 100,
-        opacity: 0,
-        duration: 1,
-        scrollTrigger: {
-            trigger: box,
-            start: "top 85%",
-            toggleActions: "play none none reverse"
-        }
-    });
-});
-
-// Footer Reveal
-gsap.from(".gsap-footer", {
-    scale: 0.8,
-    opacity: 0,
-    duration: 1,
-    stagger: 0.2,
-    scrollTrigger: {
-        trigger: ".footer",
-        start: "top 80%"
-    }
-});
