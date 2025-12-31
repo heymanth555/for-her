@@ -130,21 +130,40 @@ h1, h2, h3 {
     position: relative;
 }
 
+/* Update this section in style.css */
+
 .card-image-wrapper {
     width: 100%;
-    height: 300px;
+    /* DELETE the fixed 'height: 300px' */
+    /* Use aspect-ratio to make the box portrait-shaped (taller) */
+    aspect-ratio: 3 / 4; 
     overflow: hidden;
     border-radius: 16px;
     margin-bottom: 1.5rem;
     position: relative;
+    background: #000; /* Dark background behind image */
 }
 
 .card img {
     width: 100%;
-    height: 100%; /* You might need to adjust or remove the container's height as well */
-    object-fit: contain; /* Change this from 'cover' to 'contain' */
-    object-position: center;
+    /* We need slightly >100% for the parallax movement */
+    height: 115%; 
+    
+    /* 'cover' fills the box without stretching */
+    object-fit: cover; 
+    
+    /* IMPORTANT: aligns image to the TOP so faces aren't cut off */
+    object-position: top center; 
+    
     will-change: transform;
+    display: block;
+}
+
+/* On very small mobile screens, make it even taller if needed */
+@media (max-width: 480px) {
+    .card-image-wrapper {
+        aspect-ratio: 2 / 3; /* Even taller for mobile selfies */
+    }
 }
 
 .card-content h3 {
@@ -209,4 +228,5 @@ h1, h2, h3 {
     .card-image-wrapper { height: 250px; }
     .journey-section { padding: 1rem; }
 }
+
 
