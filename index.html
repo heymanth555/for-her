@@ -3,12 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Story | July 2025 - Jan 2026</title>
-    
+    <title>Our Story</title>
     <link rel="stylesheet" href="style.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Playfair+Display:ital,wght@0,400;1,400&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
@@ -17,72 +14,75 @@
     <canvas id="heart-canvas"></canvas>
 
     <section class="hero">
-        <h2 class="gsap-hero">The Journey</h2>
-        <h1 class="gsap-hero">TIME TOGETHER</h1>
-        
-        <div class="timer-container gsap-hero">
-            <div class="time-box">
-                <span id="days">0</span>
-                <p>Days</p>
+        <div class="hero-content">
+            <h3 class="subtitle">THE JOURNEY</h3>
+            <h1 class="title">TIME TOGETHER</h1>
+            
+            <div class="timer-wrapper">
+                <div class="time-unit">
+                    <span id="days">0</span>
+                    <label>DAYS</label>
+                </div>
+                <div class="divider">:</div>
+                <div class="time-unit">
+                    <span id="hours">0</span>
+                    <label>HRS</label>
+                </div>
+                <div class="divider">:</div>
+                <div class="time-unit">
+                    <span id="mins">0</span>
+                    <label>MIN</label>
+                </div>
             </div>
-            <div class="time-box">
-                <span id="hours">0</span>
-                <p>Hours</p>
-            </div>
-            <div class="time-box">
-                <span id="mins">0</span>
-                <p>Mins</p>
-            </div>
+
+            <p class="date-tag">JULY 5, 2025 — JAN 12, 2026</p>
         </div>
         
-        <p class="gsap-hero" style="font-style: italic; opacity: 0.8;">Falling in love since July 5, 2025</p>
-        
-        <div class="scroll-indicator">
-            Scroll to remember us ↓
+        <div class="scroll-down">
+            SCROLL TO UNLOCK ↓
         </div>
     </section>
 
-    <div class="journey-section">
+    <div class="container">
         
-        <article class="card">
-            <div class="card-image-wrapper">
-                <img src="assets/pic1.jpg" alt="July 5th" class="parallax-img">
+        <section class="memory-section">
+            <div class="image-container">
+                <img src="assets/pic1.jpg" alt="Start" style="object-position: bottom center;">
             </div>
-            <div class="card-content">
-                <h3>July 5, 2025</h3>
+            <div class="text-content">
+                <div class="tag">01 // THE START</div>
                 <h2>HOW IT STARTED</h2>
-                <p>It feels like just yesterday we began this journey. That summer day changed everything for me. Thank you for walking into my life and making these months magical.</p>
+                <p>It feels like just yesterday we began this journey. That summer day changed everything for me. Thank you for walking into my life.</p>
             </div>
-        </article>
+        </section>
 
-        <article class="card">
-            <div class="card-image-wrapper">
-                <img src="assets/pic2.jpg" alt="Memories" class="parallax-img">
+        <section class="memory-section reverse">
+            <div class="image-container">
+                <img src="assets/pic2.jpg" alt="Memories">
             </div>
-            <div class="card-content">
-                <h3>The Memories</h3>
-                <h2>THE HAPPINESS</h2>
-                <p>We created moments that I will carry forever. Through the laughter, the love, and even the quiet times—you showed me what true happiness looks like.</p>
+            <div class="text-content">
+                <div class="tag">02 // THE VIBE</div>
+                <h2>PURE HAPPINESS</h2>
+                <p>We created moments that I will carry forever. Through the laughter and the love, you showed me what true happiness looks like.</p>
             </div>
-        </article>
+        </section>
 
-        <article class="card">
-            <div class="card-image-wrapper">
-                <img src="assets/pic3.jpg" alt="Goodbye" class="parallax-img">
+        <section class="memory-section">
+            <div class="image-container">
+                <img src="assets/pic3.jpg" alt="End">
             </div>
-            <div class="card-content">
-                <h3>Jan 12, 2026</h3>
-                <h2>THE FINAL CHAPTER</h2>
-                <p>As we approach Jan 12th, I don't want to be sad that it's ending, but happy that it happened. Thank you for being my person for this chapter of my life.</p>
+            <div class="text-content">
+                <div class="tag">03 // THE CHAPTER</div>
+                <h2>THE GOODBYE</h2>
+                <p>As we approach Jan 12th, I don't want to be sad that it's ending, but happy that it happened. Thank you for being my person.</p>
             </div>
-        </article>
+        </section>
 
     </div>
 
     <footer class="footer">
-        <h1 class="gsap-footer">ALWAYS SPECIAL</h1>
-        <p class="gsap-footer" style="margin-top: 1rem; font-size: 1.2rem;">Let's make these last days count.</p>
-        <button class="btn-love gsap-footer" id="burst-btn">ONE LAST RAIN OF LOVE ❤️</button>
+        <h1>ALWAYS SPECIAL</h1>
+        <button id="burst-btn" class="glow-btn">CELEBRATE US ❤️</button>
     </footer>
 
     <script src="script.js"></script>
